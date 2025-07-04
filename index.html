@@ -40,19 +40,6 @@
         table { border-collapse: collapse; width: 100%; }
         th, td { border: 1px solid #ccc; padding: 6px 8px; text-align: left; }
         th { background: #f5f5f5; }
-        .date {
-            color: #6b7280;
-            font-size: 0.95rem;
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .date::before {
-            content: '📅';
-            font-size: 1.1rem;
-        }
     </style>
 </head>
 <body>
@@ -95,8 +82,20 @@
                     // Rows
                     json.table.rows.forEach(row => {
                         html += '<tr>';
-                        row.c.forEach(cell => {
-                            html += `<td>${cell ? cell.v : ''}</td>`;
+                        row.c.forEach((cell, colIdx) => {
+                            let value = cell ? cell.v : '';
+                            // ถ้า header มีคำว่า 'date' หรือ 'วันที่' ให้แสดงเฉพาะวันที่
+                            const colLabel = json.table.cols[colIdx].label.toLowerCase();
+                            if (value && (colLabel.includes('date') || colLabel.includes('วันที่'))) {
+                                // แปลงเป็นวันที่แบบ yyyy-mm-dd
+                                if (typeof value === 'string' && value.match(/^\d{4}-\d{2}-\d{2}/)) {
+                                    value = value.substring(0, 10);
+                                } else if (Object.prototype.toString.call(value) === '[object Date]' || !isNaN(Date.parse(value))) {
+                                    const d = new Date(value);
+                                    value = d.toISOString().substring(0, 10);
+                                }
+                            }
+                            html += `<td>${value}</td>`;
                         });
                         html += '</tr>';
                     });
@@ -134,30 +133,6 @@
     });
     // preload tab แรก
     document.getElementById(sheetNames[0]).dataset.loaded = '1';
-
-    function formatDate(dateStr) {
-    try {
-        // ถ้าเป็น Date object string จาก Google Sheets (เช่น "Date(2025,5,19,10,16,23)")
-        if (typeof dateStr === 'string' && dateStr.startsWith('Date(')) {
-            // แยกค่าตัวเลขออกมาจาก Date(...)
-            const values = dateStr.replace('Date(', '').replace(')', '').split(',');
-            // สร้าง Date object ใหม่ (เดือนต้องไม่ลบ 1 เพราะ Google Sheets ส่งเดือนจริง ไม่ใช่ index)
-            // const date = new Date(values[0], values[1] - 1, values[2]);
-            const date = new Date(values[0], values[1], values[2]); // แก้ตรงนี้
-
-            // แปลงเป็นรูปแบบวันที่ไทย แสดงเฉพาะวันที่ (ไม่แสดงเวลา)
-            return date.toLocaleDateString('th-TH', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-            });
-        }
-        return "-";
-    } catch (error) {
-        console.error('Error formatting date:', error);
-        return "-";
-    }
-}
     </script>
 </body>
 </html>
