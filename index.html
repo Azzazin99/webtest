@@ -1,59 +1,126 @@
 <!DOCTYPE html>
-<html lang="th">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>ระบบแท็บแบบ AJAX</title>
-  <style>
-    .tabs {
-      display: flex;
-      background-color: #f2f2f2;
-      padding: 10px;
-    }
-    .tabs button {
-      margin-right: 10px;
-      padding: 10px;
-      cursor: pointer;
-      border: none;
-      background-color: #ddd;
-    }
-    .tabs button.active {
-      background-color: #bbb;
-    }
-    #tab-content {
-      margin-top: 20px;
-      padding: 20px;
-      border: 1px solid #ccc;
-      background-color: #fff;
-    }
-  </style>
+    <title>Google Sheets Data Viewer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .tab {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #eee;
+            cursor: pointer;
+            border: 1px solid #ccc;
+            border-bottom: none;
+            margin-right: 2px;
+            border-radius: 5px 5px 0 0;
+            transition: background 0.2s;
+        }
+        .tab.active {
+            background: #fff;
+            font-weight: bold;
+            border-bottom: 1px solid #fff;
+        }
+        .sheet-content {
+            display: none;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 0 5px 5px 5px;
+            background: #fff;
+            min-height: 120px;
+            overflow-x: auto;
+        }
+        .sheet-content.active {
+            display: block;
+        }
+        @media (max-width: 600px) {
+            .tab { padding: 8px 8px; font-size: 14px; }
+            .sheet-content { padding: 5px; font-size: 14px; }
+        }
+        .loading { color: #888; font-style: italic; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #ccc; padding: 6px 8px; text-align: left; }
+        th { background: #f5f5f5; }
+    </style>
 </head>
 <body>
+    <h1>ข้อมูลจาก Google Sheets ทั้ง 5 ชีท</h1>
+    <div id="tabs">
+        <div class="tab active" data-sheet="Press_Release">Press Release</div>
+        <div class="tab" data-sheet="Recruitment_News">Recruitment News</div>
+        <div class="tab" data-sheet="Principles">Principles</div>
+        <div class="tab" data-sheet="Manual">Manual</div>
+        <div class="tab" data-sheet="Legal_Method">Legal Method</div>
+    </div>
+    <div id="sheet-contents">
+        <div id="Press_Release" class="sheet-content active"></div>
+        <div id="Recruitment_News" class="sheet-content"></div>
+        <div id="Principles" class="sheet-content"></div>
+        <div id="Manual" class="sheet-content"></div>
+        <div id="Legal_Method" class="sheet-content"></div>
+    </div>
+    <script>
+    // กำหนด Spreadsheet ID และชื่อชีท
+    const spreadsheetId = '1Ewr0XkjBNIEaCEAbggMYXJda9XQYr7iZCxzO5i4ilW4'; // <-- ใส่ Spreadsheet ID จริง
+    const sheetNames = ['Press_Release', 'Recruitment_News', 'Principles', 'Manual', 'Legal_Method'];
 
-  <div class="tabs">
-    <button onclick="loadTab('Press_Release.html', this)">ข่าวประชาสัมพันธ์</button>
-    <button onclick="loadTab('Recruitment_News.html', this)">ข่าวรับสมัคร</button>
-    <button onclick="loadTab('Principles.html', this)">หลักเกณฑ์</button>
-  </div>
-
-  <div id="tab-content">กรุณาเลือกแท็บเพื่อดูข้อมูล</div>
-
-  <script>
-    function loadTab(file, btn) {
-      // ลบ active จากปุ่มทั้งหมด
-      document.querySelectorAll('.tabs button').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-
-      fetch(file)
-        .then(response => response.text())
-        .then(data => {
-          document.getElementById('tab-content').innerHTML = data;
-        })
-        .catch(error => {
-          document.getElementById('tab-content').innerHTML = "เกิดข้อผิดพลาดในการโหลดข้อมูล";
-          console.error("Error loading tab:", error);
-        });
+    // ฟังก์ชันดึงข้อมูลแต่ละชีท
+    function fetchSheet(sheetName) {
+        const container = document.getElementById(sheetName);
+        container.innerHTML = '<span class="loading">กำลังโหลดข้อมูล...</span>';
+        const url = `https://docs.google.com/spreadsheets/d/${spreadsheetId}/gviz/tq?tqx=out:json&sheet=${sheetName}`;
+        fetch(url)
+            .then(res => res.text())
+            .then(text => {
+                try {
+                    const json = JSON.parse(text.substr(47).slice(0, -2));
+                    let html = `<h2>${sheetName.replace(/_/g, ' ')}</h2><table><tr>`;
+                    // Header
+                    json.table.cols.forEach(col => {
+                        html += `<th>${col.label}</th>`;
+                    });
+                    html += '</tr>';
+                    // Rows
+                    json.table.rows.forEach(row => {
+                        html += '<tr>';
+                        row.c.forEach(cell => {
+                            html += `<td>${cell ? cell.v : ''}</td>`;
+                        });
+                        html += '</tr>';
+                    });
+                    html += '</table>';
+                    container.innerHTML = html;
+                } catch (e) {
+                    container.innerHTML = '<span class="loading">ไม่สามารถโหลดข้อมูลได้</span>';
+                }
+            })
+            .catch(() => {
+                container.innerHTML = '<span class="loading">เกิดข้อผิดพลาดในการโหลดข้อมูล</span>';
+            });
     }
-  </script>
 
+    // โหลดข้อมูลเฉพาะ tab แรก
+    fetchSheet(sheetNames[0]);
+
+    // จัดการการเปลี่ยนแท็บ
+    document.querySelectorAll('#tabs .tab').forEach(tab => {
+        tab.addEventListener('click', function() {
+            // เปลี่ยน active tab
+            document.querySelectorAll('#tabs .tab').forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            // เปลี่ยน active content
+            document.querySelectorAll('.sheet-content').forEach(c => c.classList.remove('active'));
+            const sheetName = tab.getAttribute('data-sheet');
+            const contentDiv = document.getElementById(sheetName);
+            contentDiv.classList.add('active');
+            // โหลดข้อมูลถ้ายังไม่เคยโหลด
+            if (!contentDiv.dataset.loaded) {
+                fetchSheet(sheetName);
+                contentDiv.dataset.loaded = '1';
+            }
+        });
+    });
+    // preload tab แรก
+    document.getElementById(sheetNames[0]).dataset.loaded = '1';
+    </script>
 </body>
 </html>
