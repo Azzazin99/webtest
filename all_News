@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ข่าวประชาสัมพันธ์ กลุ่มบริหารงานบุคคล</title>
+  <style>
+    body {
+      font-family: Tahoma, sans-serif;
+      background-color: #2F4F4F;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .tabs {
+      display: flex;
+      background-color: #483D8B;
+      color: white;
+    }
+
+    .tab {
+      padding: 10px 20px;
+      cursor: pointer;
+      background-color: #00b3e6;
+      border-right: 1px solid white;
+    }
+
+    .tab:first-child {
+      background-color: #333;
+    }
+
+    .tab:hover {
+      background-color: #0099cc;
+    }
+
+    .container {
+      background-color: white;
+      border: 1px solid #ccc;
+      padding: 15px;
+    }
+
+    .news-item {
+      border-bottom: 1px dashed #ccc;
+      padding: 10px 0;
+    }
+
+    .news-item:last-child {
+      border-bottom: none;
+    }
+
+    .date {
+      color: green;
+      font-weight: bold;
+      margin-right: 8px;
+    }
+
+    .title {
+      font-size: 15px;
+    }
+
+    .admin-tag {
+      background-color: #25cba5;
+      color: white;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-size: 12px;
+      margin-left: 5px;
+    }
+
+    .view {
+      float: right;
+      font-size: 13px;
+      color: #555;
+    }
+
+    .read-more {
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    .read-more a {
+      background-color: #0099cc;
+      color: white;
+      padding: 6px 12px;
+      border-radius: 5px;
+      text-decoration: none;
+    }
+
+    .read-more a:hover {
+      background-color: #007aa3;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="tabs">
+    <div class="tab">ข่าวประชาสัมพันธ์ กลุ่มบริหารงานบุคคล</div>
+    <div class="tab">ข่าวรับสมัคร/แต่งตั้ง/โยกย้าย</div>
+    <div class="tab">หลักเกณฑ์และวิธีการ</div>
+    <div class="tab">คู่มือ</div>
+    <div class="tab">กฎหมายที่ควรรู้</div>
+  </div>
+
+  <div class="container">
+    <div class="news-item">
+      <span class="date">[06 มิ.ย. 68]</span>
+      <span class="title">สู่ผู้นำโครงการอบรมเชิงปฏิบัติการเพื่อเสริมสร้างความรู้ความเข้าใจ...</span>
+      <span class="admin-tag">Super administrator</span>
+      <span class="view">👁 View: 3594</span>
+    </div>
+    <div class="news-item">
+      <span class="date">[06 มิ.ย. 68]</span>
+      <span class="title">การคัดเลือกครู บุคลากรทางการศึกษา เพื่อรับรางวัลพระพฤหัสบดี ประจำปี พ.ศ. 2568</span>
+      <span class="admin-tag">Super administrator</span>
+      <span class="view">👁 View: 3522</span>
+    </div>
+    <div class="news-item">
+      <span class="date">[15 พ.ค. 68]</span>
+      <span class="title">ประกาศผลการคัดเลือกผู้เข้ารับการคัดเลือกเพื่อเลื่อนขั้น...</span>
+      <span class="admin-tag">Super administrator</span>
+      <span class="view">👁 View: 4165</span>
+    </div>
+    <div class="news-item">
+      <span class="date">[11 พ.ค. 68]</span>
+      <span class="title">ประกาศสำนักงานเขตพื้นที่ฯ เรื่องนโยบาย...</span>
+      <span class="admin-tag">Super administrator</span>
+      <span class="view">👁 View: 4283</span>
+    </div>
+    <div class="news-item">
+      <span class="date">[11 มี.ค. 68]</span>
+      <span class="title">การคัดเลือกข้าราชการหัวข้อ "ความก้าวหน้าในการเป็นบุคลากร...</span>
+      <span class="admin-tag">Super administrator</span>
+      <span class="view">👁 View: 5178</span>
+    </div>
+    <div class="news-item">
+      <span class="date">[04 มี.ค. 68]</span>
+      <span class="title">การรับสมัครบุคคลเพื่อสอบแข่งขันฯ...</span>
+      <span class="admin-tag">Super administrator</span>
+      <span class="view">👁 View: 5215</span>
+    </div>
+    <div class="news-item">
+      <span class="date">[01 มี.ค. 68]</span>
+      <span class="title">ประกาศรายชื่อผู้ผ่านการคัดเลือกข้าราชการ...</span>
+      <span class="admin-tag">Super administrator</span>
+      <span class="view">👁 View: 5377</span>
+    </div>
+    <div class="news-item">
+      <span class="date">[21 ก.พ. 68]</span>
+      <span class="title">การคัดเลือกข้าราชการพลเรือนดีเด่น ประจำปี พ.ศ. 2568</span>
+      <span class="admin-tag">Super administrator</span>
+      <span class="view">👁 View: 5453</span>
+    </div>
+
+    <div class="read-more">
+      <a href="#">อ่านต่อทั้งหมด</a>
+    </div>
+  </div>
+<script>
+async function fetchSheet(sheetName) {
+  const sheetId = '1Ewr0XkjBNIEaCEAbggMYXJda9XQYr7iZCxzO5i4ilW4';
+  const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json&sheet=${sheetName}`;
+  const res = await fetch(url);
+  const text = await res.text();
+  const json = JSON.parse(text.substr(47).slice(0, -2));
+  // แปลงข้อมูลเป็น array
+  const rows = json.table.rows.map(r => r.c.map(c => c ? c.v : ""));
+  return rows;
+}
+
+// เรียกใช้งานทั้ง 5 ชีท
+fetchSheet('Press_Release').then(data => {
+  console.log('Press_Release', data);
+  // TODO: นำข้อมูลไปแสดงผลในหน้าเว็บ
+});
+fetchSheet('Recruitment_News').then(data => {
+  console.log('Recruitment_News', data);
+  // TODO: นำข้อมูลไปแสดงผลในหน้าเว็บ
+});
+fetchSheet('Principles').then(data => {
+  console.log('Principles', data);
+  // TODO: นำข้อมูลไปแสดงผลในหน้าเว็บ
+});
+fetchSheet('Manual').then(data => {
+  console.log('Manual', data);
+  // TODO: นำข้อมูลไปแสดงผลในหน้าเว็บ
+});
+fetchSheet('Legal_Method').then(data => {
+  console.log('Legal_Method', data);
+  // TODO: นำข้อมูลไปแสดงผลในหน้าเว็บ
+});
+
+  <!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ข่าวประชาสัมพันธ์ กลุ่มบริหารงานบุคคล</title>
+  <style>
+    body {
+      font-family: Tahoma, sans-serif;
+      background-color: #2F4F4F;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .tabs {
+      display: flex;
+      background-color: #483D8B;
+      color: white;
+    }
+
+    .tab {
+      padding: 10px 20px;
+      cursor: pointer;
+      background-color: #00b3e6;
+      border-right: 1px solid white;
+    }
+
+    .tab:first-child {
+      background-color: #333;
+    }
+
+    .tab:hover {
+      background-color: #0099cc;
+    }
+
+    .container {
+      background-color: white;
+      border: 1px solid #ccc;
+      padding: 15px;
+    }
+
+    .news-item {
+      border-bottom: 1px dashed #ccc;
+      padding: 10px 0;
+    }
+
+    .news-item:last-child {
+      border-bottom: none;
+    }
+
+    .date {
+      color: green;
+      font-weight: bold;
+      margin-right: 8px;
+    }
+
+    .title {
+      font-size: 15px;
+    }
+
+    .admin-tag {
+      background-color: #25cba5;
+      color: white;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-size: 12px;
+      margin-left: 5px;
+    }
+
+    .view {
+      float: right;
+      font-size: 13px;
+      color: #555;
+    }
+
+    .read-more {
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    .read-more a {
+      background-color: #0099cc;
+      color: white;
+      padding: 6px 12px;
+      border-radius: 5px;
+      text-decoration: none;
+    }
+
+    .read-more a:hover {
+      background-color: #007aa3;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="tabs">
+    <div class="tab">ข่าวประชาสัมพันธ์ กลุ่มบริหารงานบุคคล</div>
+    <div class="tab">ข่าวรับสมัคร/แต่งตั้ง/โยกย้าย</div>
+    <div class="tab">หลักเกณฑ์และวิธีการ</div>
+    <div class="tab">คู่มือ</div>
+    <div class="tab">กฎหมายที่ควรรู้</div>
+  </div>
+
+  <div class="container">
+    <div class="news-item">
+      <span class="date">[06 มิ.ย. 68]</span>
+      <span class="title">สู่ผู้นำโครงการอบรมเชิงปฏิบัติการเพื่อเสริมสร้างความรู้ความเข้าใจ...</span>
+      <span class="admin-tag">Super administrator</span>
+      <span class="view">👁 View: 3594</span>
+    </div>
+    <div class="news-item">
+      <span class="date">[06 มิ.ย. 68]</span>
+      <span class="title">การคัดเลือกครู บุคลากรทางการศึกษา เพื่อรับรางวัลพระพฤหัสบดี ประจำปี พ.ศ. 2568</span>
+      <span class="admin-tag">Super administrator</span>
+      <span class="view">👁 View: 3522</span>
+    </div>
+    <div class="news-item">
+      <span class="date">[15 พ.ค. 68]</span>
+      <span class="title">ประกาศผลการคัดเลือกผู้เข้ารับการคัดเลือกเพื่อเลื่อนขั้น...</span>
+      <span class="admin-tag">Super administrator</span>
+      <span class="view">👁 View: 4165</span>
+    </div>
+    <div class="news-item">
+      <span class="date">[11 พ.ค. 68]</span>
+      <span class="title">ประกาศสำนักงานเขตพื้นที่ฯ เรื่องนโยบาย...</span>
+      <span class="admin-tag">Super administrator</span>
+      <span class="view">👁 View: 4283</span>
+    </div>
+    <div class="news-item">
+      <span class="date">[11 มี.ค. 68]</span>
+      <span class="title">การคัดเลือกข้าราชการหัวข้อ "ความก้าวหน้าในการเป็นบุคลากร...</span>
+      <span class="admin-tag">Super administrator</span>
+      <span class="view">👁 View: 5178</span>
+    </div>
+    <div class="news-item">
+      <span class="date">[04 มี.ค. 68]</span>
+      <span class="title">การรับสมัครบุคคลเพื่อสอบแข่งขันฯ...</span>
+      <span class="admin-tag">Super administrator</span>
+      <span class="view">👁 View: 5215</span>
+    </div>
+    <div class="news-item">
+      <span class="date">[01 มี.ค. 68]</span>
+      <span class="title">ประกาศรายชื่อผู้ผ่านการคัดเลือกข้าราชการ...</span>
+      <span class="admin-tag">Super administrator</span>
+      <span class="view">👁 View: 5377</span>
+    </div>
+    <div class="news-item">
+      <span class="date">[21 ก.พ. 68]</span>
+      <span class="title">การคัดเลือกข้าราชการพลเรือนดีเด่น ประจำปี พ.ศ. 2568</span>
+      <span class="admin-tag">Super administrator</span>
+      <span class="view">👁 View: 5453</span>
+    </div>
+
+    <div class="read-more">
+      <a href="#">อ่านต่อทั้งหมด</a>
+    </div>
+  </div>
+<script>
+async function fetchSheet(sheetName) {
+  const sheetId = '1Ewr0XkjBNIEaCEAbggMYXJda9XQYr7iZCxzO5i4ilW4';
+  const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json&sheet=${sheetName}`;
+  const res = await fetch(url);
+  const text = await res.text();
+  const json = JSON.parse(text.substr(47).slice(0, -2));
+  // แปลงข้อมูลเป็น array
+  const rows = json.table.rows.map(r => r.c.map(c => c ? c.v : ""));
+  return rows;
+}
+
+// เรียกใช้งานทั้ง 5 ชีท
+fetchSheet('Press_Release').then(data => {
+  console.log('Press_Release', data);
+  // TODO: นำข้อมูลไปแสดงผลในหน้าเว็บ
+});
+fetchSheet('Recruitment_News').then(data => {
+  console.log('Recruitment_News', data);
+  // TODO: นำข้อมูลไปแสดงผลในหน้าเว็บ
+});
+fetchSheet('Principles').then(data => {
+  console.log('Principles', data);
+  // TODO: นำข้อมูลไปแสดงผลในหน้าเว็บ
+});
+fetchSheet('Manual').then(data => {
+  console.log('Manual', data);
+  // TODO: นำข้อมูลไปแสดงผลในหน้าเว็บ
+});
+fetchSheet('Legal_Method').then(data => {
+  console.log('Legal_Method', data);
+  // TODO: นำข้อมูลไปแสดงผลในหน้าเว็บ
+});
+
+// เพิ่มฟังก์ชันแสดงข่าวในหน้าเว็บ
+function renderNews(newsArray, containerSelector) {
+  const container = document.querySelector(containerSelector);
+  container.innerHTML = newsArray.map(row => `
+    <div class="news-item">
+      <span class="date">${row[0]}</span>
+      <span class="title">${row[1]}</span>
+      <span class="admin-tag">${row[2]}</span>
+      <span class="view">👁 View: ${row[3]}</span>
+    </div>
+  `).join('');
+}
+
+// ตัวอย่างการใช้งาน
+fetchSheet('Press_Release').then(data => {
+  renderNews(data, '.container');
+});
+
+fetchSheet('Recruitment_News').then(data => {
+  renderNews(data, '.container');
+});
+
+fetchSheet('Principles').then(data => {
+  renderNews(data, '.container');
+});
+
+fetchSheet('Manual').then(data => {
+  renderNews(data, '.container');
+});
+
+fetchSheet('Legal_Method').then(data => {
+  renderNews(data, '.container');
+});
+</script>
+</body>
+</html>
